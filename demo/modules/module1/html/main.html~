@@ -1,0 +1,48 @@
+<div class="md-overlay"></div>
+
+<div class="page-header">
+	<h2><span data-ltag="title"></span><small data-ltag="main-description"></small></h2>
+</div>
+<div class="row-fluid">
+	<div id="registerContainer" class="span11">
+		<div class="row-fluid">
+			<div class="span4">
+				<div class="row-fluid">
+					<button data-type="income" class="main-btn btn btn-large btn-success span12"><span data-ltag="btn-income"></span></button>
+				</div><br>
+				<div class="row-fluid">
+					<button data-type="expense" class="main-btn btn span12"><span data-ltag="btn-expense"></span></button>
+				</div>
+			</div>
+			<div class="span8">
+				<div id="activity-data">
+					<h4 id="activity-title"></h4>
+					<div class="form-horizontal">
+						
+						<div class="control-group">
+							<label class="control-label" for="inputAmount" data-ltag="amount"></label>
+							<div class="controls">
+								<div class="input-prepend">
+									<span class="add-on" data-ltag="money"></span>
+									<input type="text" id="inputAmount" class="span12" placeholder="0.00" required>
+								</div>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="inputDescription" data-ltag="description"></label>
+							<div class="controls">
+								<textarea id="inputDescription"></textarea>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div id="tableContainer" class="span11">
+	</div>
+</div>

@@ -1,0 +1,11 @@
+#menu {
+	position: relative;
+	float: left;
+	width: 20%;
+	padding-top: 4%;
+}
+
+#content {
+	width: 79%;
+	position: relative;
+}
