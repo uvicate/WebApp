@@ -846,8 +846,8 @@ function Initclass(j){
 			j.mensaje = {};
 		}
 		j.respuesta = 'objeto';
-		j.url = url + j.archivo;
-		delete j.archivo; 
+		j.url = url + j.file;
+		delete j.file; 
 
 		Vi(j).respondo(function(r){
 			if(typeof j.callback === 'function'){
@@ -857,28 +857,28 @@ function Initclass(j){
 	}
 	
 	//Obtiene la dirección de la categoría a la que pertenece el módulo (si es que aplica).
-	_Modulo.prototype.getServerCat = function(archivo, datos, callback){
+	_Modulo.prototype.getServerCat = function(file, data, callback){
 		var j = {};
-		if(typeof archivo !== 'object'){
-			j.archivo = archivo;
-			j.datos = datos;
+		if(typeof file !== 'object'){
+			j.file = file;
+			j.data = data;
 			j.callback = callback;
 			j.multiple = true;
 		}else{
-			j = archivo;
+			j = file;
 		}
 		this.peticion(this.getUrlServerCat()+'/server/', j);
 	}
 	
 	//Obtiene la dirección del módulo en el servidor.
-	_Modulo.prototype.getServer = function(archivo, datos, callback){
+	_Modulo.prototype.getServer = function(file, data, callback){
 		var j = {};
-		if(typeof archivo !== 'object'){
-			j.archivo = archivo;
-			j.datos = datos;
+		if(typeof file !== 'object'){
+			j.file = file;
+			j.data = data;
 			j.callback = callback;
 		}else{
-			j = archivo;
+			j = file;
 		}
 		this.peticion(this.getUrlServer()+'/server/', j);
 	}
