@@ -1,5 +1,5 @@
 {
-    "name": "uVicate/WebApp",
+    "name": "uvicate/webapp",
     "type": "library",
     "description": "Creating and manage Ajax-Translatable Applications",
     "keywords": ["ajax", "translate", "webapp"],
