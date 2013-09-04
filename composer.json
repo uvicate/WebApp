@@ -5,6 +5,7 @@
     "keywords": ["ajax", "translate", "webapp"],
     "homepage": "https://github.com/uvicate/WebApp",
     "require": {},
+    "license": "MIT",
     "authors": [
     	{
     		"name": "Victor Quiroz",
