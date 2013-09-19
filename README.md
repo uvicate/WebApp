@@ -125,6 +125,35 @@ If the application is English and the user wants it in Spanish, this is done as 
 App.current.translateTo('es');
 ```
 
+Setup
+-----
+For easy startup I added a Python script that helps to create all the needed directories, which can be a very repetitive task if you have many projects.
+
+The first thing to do is to configure the `setup.json`
+
+```
+{
+	"project":"foo",
+	"project_path":"bar",
+	"modules":["login", "backend", "frontend"],
+	"module_path":"modules",
+	"languages":["en", "es"]
+}
+```
+First of all, the `project` will specify the root path of the project, if you are starting a new project the name of the project will be the new directory in which all the modules and languages will be stored. Inside this new path, you will have to create the index.html and all that. See the demo for a better example :)
+
+The modules are inside an array, in this case there are three of them: `login`, `backend` and `frontend` every module will have all required files. The `module_path` will be the path for all the modules, in this case it will be to `bar/modules/`
+
+The languages work the same way, in this case my application will support `english` and `spanish`.
+
+After all the configuration is ready then go to the terminal and type
+
+```
+python setup.py
+```
+All the files will be created after that, now you are ready to go!
+
+
 Requirements
 ------------
 
