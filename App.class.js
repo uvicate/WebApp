@@ -646,7 +646,6 @@ function Initclass(j){
         callback = (typeof callback !== 'function') ? function(){} : callback;
 
         var t = this;
-        console.log('parameters', parameters);
         if(this.isTranslated(parameters.file) === false){
             new Vi({url: this.getLanguageUrl()+parameters.file, response: 'xml', cache: true}).server(function(r){
                 t.setLanguageJson(r, parameters.file);
