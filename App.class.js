@@ -780,14 +780,14 @@ function Initclass(j){
     }
     
     Module.prototype.getText = function(tag, file){
-        var x = this.getLanguageJson().getElementsByTagName(node)[0];
-        y = x.childNodes[0];
+        var x = this.getLanguageJson(file).getElementsByTagName(tag)[0];
+        var y = x.childNodes[0];
         return y.nodeValue;
     }
 
     Module.prototype.getMainText = function(tag, file) {
-        var x = this.getMainXML().getElementsByTagName(node)[0];
-        y = x.childNodes[0];
+        var x = this.getMainXML(file).getElementsByTagName(tag)[0];
+        var y = x.childNodes[0];
         return y.nodeValue;
     };
 
