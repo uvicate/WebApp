@@ -864,9 +864,10 @@ function Initclass(j){
                                             tag.setAttribute(c, attr);
                                         }
                                         var t = node.childNodes[0].data;
-                                        t = document.createTextNode(t);
-                                        tag.innerHTML = '';
-                                        tag.appendChild(t);
+                                        t = document.innerHTML=t;
+                                        tag.innerHTML = t;
+                                        //Se hizo este cambio para poder introducir CDATA en el XML
+                                        //tag.appendChild(t);
                                     }
                                 }
                             }    
