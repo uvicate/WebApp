@@ -617,6 +617,7 @@ function Initclass(j){
     };
 
     Module.prototype.translate = function(parameters, callback) {
+        parameters = (typeof parameters !== 'object') ? this.preLoad().translate : parameters;
         callback = (typeof callback !== 'function') ? function(){} : callback;
 
         var t = this;
@@ -853,21 +854,24 @@ function Initclass(j){
                     for(var j = 0, len2 = dom.childNodes.length; j < len2; j++){
                         var node = dom.childNodes[j];
                         if(node.nodeName !== '#text'){
-                            var tags = document.querySelectorAll('*[data-ltag="'+node.childNodes[0].parentNode.tagName+'"]');
-                            if(tag !== null){
-                                for(var k = 0, len3 = tags.length; k < len3; k++){
-                                    var tag = tags[k];
-                                    var c = 'class';
-                                    var attr = node.getAttribute(c);
-                                    if(attr !== '' && attr !== null){
-                                        tag.setAttribute(c, attr);
+                            if(node.childNodes[0] !== undefined){
+                                var tags = document.querySelectorAll('*[data-ltag="'+node.childNodes[0].parentNode.tagName+'"]');
+                                if(tag !== null){
+                                    for(var k = 0, len3 = tags.length; k < len3; k++){
+                                        var tag = tags[k];
+                                        var c = 'class';
+                                        var attr = node.getAttribute(c);
+                                        if(attr !== '' && attr !== null){
+                                            tag.setAttribute(c, attr);
+                                        }
+                                        var t = node.childNodes[0].data;
+                                        t = document.innerHTML=t;
+                                        tag.innerHTML = t;
+                                        //Se hizo este cambio para poder introducir CDATA en el XML
+                                        //tag.appendChild(t);
                                     }
-                                    var t = node.childNodes[0].data;
-                                    t = document.createTextNode(t);
-                                    tag.innerHTML = '';
-                                    tag.appendChild(t);
                                 }
-                            }
+                            }    
                         }
                     }
                 }
