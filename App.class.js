@@ -696,7 +696,7 @@ function Initclass(j){
     };
 
     Module.prototype.getMainXML = function() {
-        return (t.currents.mainXML !== undefined) ? t.currents.mainXML : {};
+        return (this.currents.mainXML !== undefined) ? this.currents.mainXML : {};
     };
 
     Module.prototype.setLanguageJson = function(j, file) {
