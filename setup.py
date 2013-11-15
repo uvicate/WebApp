@@ -10,7 +10,7 @@ def genericXml():
 	return body
 
 def genericJS():
-	body = '(function(){\n\t"use strict";\n\tvar Module = function(){};\n\n\tvar m = new Module();})();'
+	body = '(function(){\n\t"use strict";\n\tvar Module = function(){};\n\n\tvar m = new Module();\n})();'
 	return body
 
 #Each webapp project has the same directory structure
