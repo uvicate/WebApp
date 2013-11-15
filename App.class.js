@@ -230,23 +230,18 @@ function Initclass(j){
             url += datos;
         }
         
-        if(this.modo === 'POST' && this.enviaArchivo === false){
-            var datos = '';
-            for(var llave in this.datos){
-                if(typeof this.datos[llave] === "object"){
-                    this.datos[llave] = JSON.pruned(this.datos[llave]);
-                }
-                datos +=encodeURIComponent(llave)+'='+encodeURIComponent(this.datos[llave])+'&';
+        var datos = '';
+        for(var llave in this.datos){
+            if(typeof this.datos[llave] === "object"){
+                this.datos[llave] = JSON.pruned(this.datos[llave]);
             }
+            datos +=encodeURIComponent(llave)+'='+encodeURIComponent(this.datos[llave])+'&';
         }
         
         var esto = this;
         if(http.open !== undefined){
             http.open(this.modo, url, true);
-            if(this.enviaArchivo == false) {
-                http.setRequestHeader(this.header, this.valorHeader);
-            }
-
+            http.setRequestHeader(this.header, this.valorHeader);
             http.send(datos);
         }else{
             http.sendJSON();
