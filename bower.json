@@ -5,6 +5,7 @@
 		"App.class.js"
 	],
 	"ignore": [
+		"demo/",
 		"demo/*",
 		"composer.json",
 		"bower.json"
