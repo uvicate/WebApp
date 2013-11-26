@@ -1,0 +1,13 @@
+{
+	"name": "webapp",
+	"version": "v1.0-pre",
+	"ignore": [
+		"demo/*"
+	],
+	"keywords": [
+		"javascript",
+		"application",
+		"ajax",
+		"webapp"
+	]
+}
