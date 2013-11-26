@@ -1,6 +1,6 @@
 {
 	"name": "webapp",
-	"version": "v1.0-pre",
+	"version": "V1.0.1",
 	"ignore": [
 		"demo/*"
 	],
