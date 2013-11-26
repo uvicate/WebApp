@@ -1,8 +1,13 @@
 {
 	"name": "webapp",
 	"version": "V1.0.1",
+	"main": [
+		"App.class.js"
+	],
 	"ignore": [
-		"demo/*"
+		"demo/*",
+		"composer.json",
+		"bower.json"
 	],
 	"keywords": [
 		"javascript",
