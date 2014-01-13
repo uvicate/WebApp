@@ -452,7 +452,8 @@ function Initclass(j){
             currents: {language: 'en', languages: {}},
             modules: {},
             div: '',
-            loaded: false
+            loaded: false,
+            relativePath: ''
         }
 
         var js = {defaults: defaults, data: j};
@@ -680,7 +681,7 @@ function Initclass(j){
         var t = this;
         if(typeof t.currents.mainXML === undefined || t.currents.mainLang !== t.currents.language){
             callback = (typeof callback !== 'function') ? function(){} : callback;
-            new Vi({url: 'language/'+this.currents.language+'/main.xml', response: 'xml', cache: true}).server(function(r){
+            new Vi({url: this.getMainLanguageUrl(), response: 'xml', cache: true}).server(function(r){
                 t.currents.mainXML = r;
                 t.currents.mainLang = t.currents.language;
                 callback();
@@ -761,13 +762,17 @@ function Initclass(j){
         }
         this.ajax(this.getUrl()+'/server/', j);
     }
+
+    Module.prototype.getMainLanguageUrl = function() {
+        return this.parent.relativePath + 'language/' + this.currents.language + '/main.xml';
+    };
     
     Module.prototype.getLanguageUrl = function() {
-        return 'language/'+this.currents.language+'/'+this.name+'/';
+        return this.parent.relativePath + 'language/'+this.currents.language+'/'+this.name+'/';
     };
     
     Module.prototype.getUrl = function(){
-        return this.url+this.name;
+        return this.parent.relativePath + this.url + this.name;
     }
     
     //url url de los archivos del servidor
