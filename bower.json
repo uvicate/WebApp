@@ -1,20 +1,26 @@
 {
-	"name": "webapp",
-	"version": "v1.0.2",
-	"main": [
-		"App.class.js"
-	],
-	"ignore": [
-		"demo/",
-		"demo/*",
-		"composer.json",
-		"bower.json"
-	],
-	"keywords": [
-		"javascript",
-		"application",
-		"ajax",
-		"webapp",
-		"uvicate"
-	]
+  "name": "webapp",
+  "version": "v1.0.3",
+  "main": [
+    "App.class.js"
+  ],
+  "ignore": [
+    "demo/",
+    "demo/*",
+    "composer.json",
+    "bower.json"
+  ],
+  "keywords": [
+    "javascript",
+    "application",
+    "ajax",
+    "webapp",
+    "uvicate"
+  ],
+  "homepage": "https://github.com/uvicate/WebApp",
+  "authors": [
+    "victorhqc <victorhqc@gmail.com>"
+  ],
+  "description": "Create AJAX web apps with translation support",
+  "license": "MIT"
 }
