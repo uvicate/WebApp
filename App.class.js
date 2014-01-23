@@ -147,7 +147,10 @@ function Initclass(j){
             urlH: '/',
             mensajeH: '',
             mClass: false,
-            mensaje:{}
+            mensaje:{},
+            headers: [
+                {'Content-Type': 'application/x-www-form-urlencoded'}
+            ]
         }
 
         // The original variables are in spanish, so I added translated variables as well
@@ -241,7 +244,16 @@ function Initclass(j){
         var esto = this;
         if(http.open !== undefined){
             http.open(this.modo, url, true);
-            http.setRequestHeader(this.header, this.valorHeader);
+
+            for(var i = 0, len = this.headers.length; i < len; i++){
+                var header = this.headers[i];
+                for(var k in header){
+                    if(header.hasOwnProperty(k)){
+                        http.setRequestHeader(k, header[k]);
+                    }
+                    break;
+                }
+            }
             http.send(datos);
         }else{
             http.sendJSON();
