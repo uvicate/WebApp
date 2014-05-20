@@ -6,7 +6,7 @@ function Initclass(j){
     var data = (j.data !== undefined) ? j.data : {};
     var defaults = (j.defaults !== undefined) ? j.defaults : {};
     var synonyms = (j.synonyms !== undefined) ? j.synonyms : {};
-        
+
     for(var k in synonyms){
         if(data[k] !== undefined){
             data[ synonyms[k] ] = data[k];
@@ -17,11 +17,11 @@ function Initclass(j){
     for (var llave in defaults){
         types[llave] = typeof defaults[llave];
     }
-    
+
     for(var key in defaults){
-        data[key] = (typeof data[key] === 'undefined') ? defaults[key] : data[key];    
+        data[key] = (typeof data[key] === 'undefined') ? defaults[key] : data[key];
     }
-    
+
     for(var key in data){
         var t = typeof data[key];
         if(t !== types[key] && types[k] !== undefined){
@@ -33,24 +33,24 @@ function Initclass(j){
 }
 
 (function(){
-    // 
+    //
     // JSONHttpRequest 0.3.0
     //
     // Copyright 2011 Torben Schulz <http://pixelsvsbytes.com/>
-    // 
+    //
     // This program is free software: you can redistribute it and/or modify
     // it under the terms of the GNU General Public License as published by
     // the Free Software Foundation, either version 3 of the License, or
     // (at your option) any later version.
-    // 
+    //
     // This program is distributed in the hope that it will be useful,
     // but WITHOUT ANY WARRANTY; without even the implied warranty of
     // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     // GNU General Public License for more details.
-    // 
+    //
     // You should have received a copy of the GNU General Public License
     // along with _self program. If not, see <http://www.gnu.org/licenses/>.
-    // 
+    //
     ///////////////////////////////////////////////////////////////////////
 
     function JSONHttpRequest() {
@@ -76,16 +76,16 @@ function Initclass(j){
             enumerable: true,
             configurable: true
         }
-        
+
         _self.strictJSON = true;
         Object.defineProperty(_self, 'responseJSON', property);
-        
+
         _self.sendJSON = function(data) {
             try {
                 data = JSON.stringify(data);
                 _responseJSON = null;
                 if (!_userContentType)
-                    _xmlHttpRequest.setRequestHeader('Content-Type', 'application/json;charset=encoding');          
+                    _xmlHttpRequest.setRequestHeader('Content-Type', 'application/json;charset=encoding');
                 _userContentType = false;
             }
             catch (e) {
@@ -94,9 +94,9 @@ function Initclass(j){
             }
             _xmlHttpRequest.send(data);
         }
-        
+
         // INFO proxy setup
-        
+
         function proxy(name) {
             try {
                 if ((typeof _xmlHttpRequest[name]) == 'function') {
@@ -109,17 +109,17 @@ function Initclass(j){
                 else {
                     property.get = function() { return _xmlHttpRequest[name]; }
                     property.set = function(value) { _xmlHttpRequest[name] = value; }
-                    Object.defineProperty(_self, name, property);   
+                    Object.defineProperty(_self, name, property);
                 }
             }
             catch (e) {
                 // NOTE Swallow any exceptions, which may rise here.
             }
         }
-        
+
         // FIX onreadystatechange is not enumerable [Opera]
         proxy('onreadystatechange');
-        
+
         for (n in _xmlHttpRequest)
             proxy(n);
     }
@@ -129,7 +129,7 @@ function Initclass(j){
     var _Vi = function(j){
 
         var json = (j === undefined ) ? {} : j;
-        
+
         var defaults = {
             url: '',
             cache: false,
@@ -186,8 +186,8 @@ function Initclass(j){
                         req = new ActiveXObject("Microsoft.XMLHTTP");
                     } catch (err3) {
                         req = false;
-                    } 
-                } 
+                    }
+                }
             }
         }
         return req;
@@ -216,23 +216,23 @@ function Initclass(j){
     _Vi.prototype.ajax = function(callback){
         var http = this.httpHandler();
         this.http = http;
-        
+
         var myRand = '';
         if(this.cache === false){
             myRand = "?rand="+ parseInt(Math.random()*999999999999999);
         }
-        
+
         var url = this.url+myRand;
         if(this.mod === 'GET' && this.enviaArchivo === false){
             var datos = '';
-            
+
             for(var llave in this.datos){
                 datos += '&' + encodeURIComponent(llave) + '=' + encodeURIComponent(this.datos[llave]);
             }
-            
+
             url += datos;
         }
-        
+
         var datos = '';
         for(var llave in this.datos){
             if(typeof this.datos[llave] === "object"){
@@ -240,7 +240,7 @@ function Initclass(j){
             }
             datos +=encodeURIComponent(llave)+'='+encodeURIComponent(this.datos[llave])+'&';
         }
-        
+
         var esto = this;
         if(http.open !== undefined){
             http.open(this.modo, url, true);
@@ -258,7 +258,7 @@ function Initclass(j){
         }else{
             http.sendJSON();
         }
-        
+
 
         http.onreadystatechange = function(){
             if(http.readyState === 4){
@@ -273,7 +273,7 @@ function Initclass(j){
                         break;
                     }
                 }
-            } 
+            }
         }
     }
 
@@ -284,7 +284,7 @@ function Initclass(j){
         }
     }
 
-    _Vi.prototype.success = function(callback){                    
+    _Vi.prototype.success = function(callback){
         if(this.historial == true){
             if(window.dhtmlHistory === undefined){
                 console.log('Para que el historial funcione, necesitas implementar RSH');
@@ -294,7 +294,7 @@ function Initclass(j){
                     {message: this.mensajeH});
             }
         }
-        
+
         var respuesta;
         switch(this.respuesta){
             case 'xml':
@@ -354,25 +354,25 @@ function Initclass(j){
         var xhr = new XMLHttpRequest();
         var fd = new FormData();
         var metodo;
-        
+
         fd = this.datos;
-        
+
         xhr.open(this.modo, uri, true);
         xhr.send(fd);
 
         xhr.onreadystatechange = function(){
             if (xhr.readyState == 4 && xhr.status == 200) {
                 respuesta = eval('('+xhr.responseText+')');
-                
+
                 if(callback!=undefined){
                     callback(respuesta);
                 }else{
                     return respuesta;
                 }
-                
+
             }
         }
-        
+
         delete xhr;
         delete fd;
     }
@@ -415,18 +415,18 @@ function Initclass(j){
     }
 
     _Vi.prototype.respondo = function(callback){
-        
+
         this.modo = 'POST';
         this.div = undefined;
         return this.ajax(callback);
     }
 
     _Vi.prototype.form = function(json, callback){
-        
+
         for(var llave in json){
             this.llave = json.llave;
         }
-        
+
         var datos = {};
         var esto = this;
 
@@ -442,12 +442,12 @@ function Initclass(j){
         }
 
         this.datos = datos;
-        
+
         this.modo = 'POST';
         var respondo = esto.ajax(callback);
-        
+
         return respondo;
-        
+
     }
 
     window.Vi = function(json){
@@ -543,7 +543,7 @@ function Initclass(j){
         }
 
         // The original variables are in spanish, so I added translated variables as well
-        synonyms = {
+        var synonyms = {
             nombre: 'name'
         }
 
@@ -555,7 +555,7 @@ function Initclass(j){
         callback = (typeof callback !== 'function') ? function(){} : callback;
 
         if(parameters.load === true){
-            var href = this.getUrl()+'/css/'+parameters.file;      
+            var href = this.getUrl()+'/css/'+parameters.file;
             var antiq = document.querySelector('head link[data-'+this.name+']');
             if(antiq !== null){
                 antiq.parentNode.removeChild(antiq);
@@ -573,7 +573,7 @@ function Initclass(j){
 
         callback();
     };
-        
+
     Module.prototype.getHTML = function(parameters, callback){
         callback = (typeof callback !== 'function') ? function(){} : callback;
 
@@ -591,7 +591,7 @@ function Initclass(j){
             callback();
         }
     };
-        
+
     Module.prototype.getJS = function(parameters, callback){
 
         callback = (typeof callback !== 'function') ? function(){} : callback;
@@ -600,7 +600,7 @@ function Initclass(j){
             var head    = document.getElementsByTagName("head")[0];
             var script  = document.createElement("script");
             var done    = false; // Handle Script loading
-            
+
             var url = './'+this.getUrl()+'/js/'+parameters.file;
             script.src  = url;
             script.onload = script.onreadystatechange = function() { // Attach handlers for all browsers
@@ -686,7 +686,7 @@ function Initclass(j){
             languageToDOM(xmls);
             callback(this);
         }
-        
+
     };
 
     Module.prototype.setMainXML = function(callback) {
@@ -735,7 +735,7 @@ function Initclass(j){
         var langs = this.currents.languages;
         var currentLang = langs[this.currents.language];
         var j = this.currents.languages[this.currents.language][module][file];
-        
+
         return j;
     };
 
@@ -748,7 +748,7 @@ function Initclass(j){
         }
         j.response = 'object';
         j.url = url + j.file;
-        delete j.file; 
+        delete j.file;
 
         Vi(j).server(function(r){
             if(typeof j.callback === 'function'){
@@ -761,7 +761,7 @@ function Initclass(j){
     Module.prototype.getServerCat = function(file, data, callback){
         this.getServer(file, data, callback);
     }
-    
+
     //Obtiene la dirección del módulo en el servidor.
     Module.prototype.getServer = function(file, data, callback){
         var j = {};
@@ -778,20 +778,20 @@ function Initclass(j){
     Module.prototype.getMainLanguageUrl = function() {
         return this.parent.relativePath + 'language/' + this.currents.language + '/main.xml';
     };
-    
+
     Module.prototype.getLanguageUrl = function() {
         return this.parent.relativePath + 'language/'+this.currents.language+'/'+this.name+'/';
     };
-    
+
     Module.prototype.getUrl = function(){
         return this.parent.relativePath + this.url + this.name;
     }
-    
+
     //url url de los archivos del servidor
     Module.prototype.getUrlServer = function(){
        return this.getUrl();
     }
-    
+
     Module.prototype.getText = function(tag, file){
         var x = this.getLanguageJson(file).getElementsByTagName(tag)[0];
         var y = x.childNodes[0];
@@ -883,7 +883,7 @@ function Initclass(j){
                                         //tag.appendChild(t);
                                     }
                                 }
-                            }    
+                            }
                         }
                     }
                 }
@@ -968,7 +968,7 @@ function Initclass(j){
                     try {
                         v = str(k, value, depthDecr-1, arrayMaxLength);
                         if (v) partial.push(quote(k) + ':' + v);
-                    } catch (e) { 
+                    } catch (e) {
                         // this try/catch due to some "Accessing selectionEnd on an input element that cannot have a selection." on Chrome
                     }
                 }
